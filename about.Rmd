@@ -9,11 +9,12 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 
 This is an [R Markdown website](http://rmarkdown.rstudio.com/rmarkdown_websites.html). 
-The source can be found [on GitHub <i class="fa fa-github"></i>](https://github.com/apreshill/data-vis-labs-2018).
+The source can be found [on GitHub <i class="fa fa-github"></i>](https://github.com/watanabesmith/data-vis-labs-2019).
+These materials and this website is heavily derived from Dr Alison Hill's 2018 page for this same course (https://github.com/apreshill/data-vis-labs-2018).
 
 The link to all the labs is here:
 
-<https://apreshill.github.io/data-vis-labs-2018/>
+<https://watanabesmith.github.io/data-vis-labs-2019/>
 
 Who am I?
 
