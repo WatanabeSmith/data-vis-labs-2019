@@ -1,6 +1,6 @@
 ---
-title: 'Introduce Yourself'
-author: "Alison Hill"
+title: 'Introduce Yourself to R'
+author: "Kevin Watanabe-Smith"
 output:
   html_document:
     theme: flatly
@@ -17,6 +17,7 @@ knitr::opts_chunk$set(error = TRUE, comment = NA, warnings = FALSE, errors = FAL
 ```{r load-packages, include = FALSE}
 library(tidyverse)
 library(babynames)
+library(skimr)
 ```
 
 > Read all the way through step 6, and note that there is a file that needs to be turned in to Sakai before Wednesday at noon!
@@ -64,7 +65,7 @@ RStudio provides a powerful user interface for R, called an *integrated developm
 
 ## Check in
 
-Launch RStudio. You should get a window similar to the screenshot you see [here](https://www.rstudio.com/wp-content/uploads/2014/04/rstudio-workbench.png), but yours will be empty. Look at the bottom left pane: this is the same console window you saw when you opened R in step 1.15. 
+Launch RStudio. You should get a window similar to the screenshot you see [here](https://www.rstudio.com/wp-content/uploads/2014/04/rstudio-workbench.png), but yours will be empty. Look at the bottom left pane: this is the same console window you saw when you opened R in step 2. 
 
 * Place your cursor where you see `>` and type `x <- 2 + 2`, hit enter or return, then type `x`, and hit enter/return again. 
 * If `[1] 4` prints to the screen, you have successfully installed R and RStudio, and you can move onto installing packages.
@@ -98,13 +99,13 @@ install.packages(c("dplyr", "ggplot2", "babynames"),
 <p class="text-info"> __Heads up:__ We should formally introduce the combine command, [`c()`](http://stat.ethz.ch/R-manual/R-patched/library/base/html/c.html), used above. You will use this often- any time you want to combine things into a vector.</p>
 
 ```{r c_demo}
-c("hello", "my", "name", "is", "alison")
+c("hello", "my", "name", "is", "kevin")
 c(1:3, 20, 50)
 ```
 
 Mind your use of quotes carefully with packages.
 
-* To *install* a package, you put the name of the package in quotes as in `install.packages("name_of_package")`. 
+* To *install* a package, you put the name of the package in quotes as in `install.packages("name_of_package")`. You only need to do this once per package for each computer where you install R. 
 * To *use* an already installed package, you must load it first, as in `library(name_of_package)`, leaving the name of the package bare. You only need to do this once per RStudio session.
 * If you want *help*, no quotes are needed: `help(name_of_package)` or `?name_of_package`.
 * If you want the *citation* for a package (and you should give credit where credit is due), ask R as in `citation("name_of_package")`.
@@ -134,42 +135,44 @@ library(dplyr) # for manipulating data
 library(ggplot2) # for plotting data
 ```
 
+You can execute all of the code in your R Script by clicking "Run" (or Ctrl + Alt + R), or you can run just the line your cursor is on by pressing "Ctrl + Enter".
 
 Next, we'll follow [best practices for inspecting a freshly read dataset](https://cran.r-project.org/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf). Also, see ["What I do when I get a new data set as told through tweets"](http://simplystatistics.org/2014/06/13/what-i-do-when-i-get-a-new-data-set-as-told-through-tweets/) for more ideas about exploring a new dataset. Here are some critical commands to obtain a high-level overview (HLO) of your freshly read dataset in R. We'll call it saying hello to your dataset:
 
 ```{r hlo_dataset}
-glimpse(babynames) # dplyr
-head(babynames) # base R
-tail(babynames) # same
-names(babynames) # same
+glimpse(babynames) # dplyr function
+head(babynames) # base R function
+tail(babynames) # base R function
+colnames(babynames) # base R function
 ```
 
 
-If you have done the above and produced sane-looking output, you are ready for the next bit. Use the code below to create a new data frame called `alison`.
+If you have done the above and produced sane-looking output, you are ready for the next bit. Use the code below to create a new data frame called `sierra_alt`. My daughter Sierra was born last year, and I want to know if we spelled her name in a common or unique fashion.
 
 ```{r manipulate_name_data}
-alison <- babynames %>%
-  filter(name == "Alison" | name == "Allison") %>% 
-  filter(sex == "F") 
+sierra_alt <- babynames %>% 
+  filter(name == "Sierra" | name == "Siera" | name == "Ciara" | name == "Cierra" | name == "Seara") %>% 
+  filter(sex == "F")
+
 ```
 
-* The first bit makes a new dataset called `alison` that is a copy of the `babynames` dataset- the `%>%` tells you we are doing some other stuff to it later.
+* The first bit makes a new dataset called `sierra_alt` that is a copy of the `babynames` dataset - the `%>%` tells you we are doing some other stuff to it later. While this is written first, the `<-` assignment or copying happens last.
 
-* The second bit `filters` our `babynames` to only keep rows where the `name` is either Alison or Allison (read `|` as _"or"_.) 
+* The second bit `filters` our `babynames` to only keep rows where the `name` is Sierra or an alternate spelling (read each `|` as _"or"_.) 
 
 * The third bit applies another `filter` to keep only those where sex is female.
 
 Let's check out the data.
 
-```{r}
-alison
-glimpse(alison)
+```{r checking_manipulated_data}
+sierra_alt
+glimpse(sierra_alt)
 ```
 
 Again, if you have sane-looking output here, move along to plotting the data!
 
 ```{r plot_name_data}
-plot <- ggplot(alison, aes(x = year, 
+plot <- ggplot(sierra_alt, aes(x = year, 
                            y = prop,  
                            group = name, 
                            color = name)) + 
@@ -182,9 +185,73 @@ Now if you did this right, you will not see your plot! Because we saved the `ggp
 plot 
 ```
 
+## Remixing name plots - a preview of what you'll learn
+
+That last Sierra plot is hard to read which names are which lines (probably because of my color blindness), but we can add labels to each line with an extra line or two.
+
+```{r}
+ggplot(sierra_alt, aes(x = year,
+                       y = prop,
+                       group = name,
+                       color = name)) +
+  geom_line() + 
+  geom_text(data = sierra_alt %>% filter(year == 2000), 
+            aes(x = year, 
+                y = prop, 
+                label = name), 
+            nudge_y = 0.0001)
+```
+
+Ciara became quite popular following the singer by the same name releasing a triple-platnum debut in 2004.
+
+What about Star Wars characters, which names rose in popularity after the release of Star Wars?
+
+```{r starwars1}
+swnames <- babynames %>% 
+  filter((name == "Han" & sex == "M") |
+           (name == "Luke" & sex == "M") |
+           (name == "Leia" & sex == "F"))
+
+ggplot(swnames, aes(x = year,
+                    y = prop,
+                    group = name,
+                    color = name)) +
+  geom_line() +
+  geom_vline(xintercept = 1977, linetype = "3133")
+```
+
+How about the new movies, is Rey usually a male or female name? Is that changing?
+
+```{r starwars2}
+rey_gender <- babynames %>% 
+  filter(name == "Rey")
+
+ggplot(rey_gender, aes(x = year,
+                    y = prop,
+                    group = sex,
+                    color = sex)) +
+  geom_line() +
+  geom_vline(xintercept = 2015, linetype = "2123")
+```
+
+What about the course instructors? Can we guess how old they are by their names?
+
+```{r instructornames}
+instructors <- babynames %>% 
+  filter((name == "Steven" & sex == "M") |
+           (name == "Kevin" & sex == "M") |
+           (name == "Jackie" & sex == "F"))
+
+ggplot(instructors, aes(x = year,
+                    y = prop,
+                    color = name)) +
+  geom_line()
+```
+
+
 # Make a new name plot
 
-Edit my code above to create a new dataset. Pick 2 names to compare how popular they each are (these could be different spellings of your own name, like I did, but you can choose any 2 names that are present in the dataset). Make the new plot, changing the name of the first argument `alison` in `ggplot()` to the name of your new dataset.
+Edit my code above to create a new dataset. Pick 2 names to compare how popular they each are (these could be different spellings of your own name, like I did, but you can choose any 2 names that are present in the dataset). Make the new plot, changing the name of the first argument `sierra_alt` in `ggplot()` to the name of your new dataset.
 
 
 ## Save and share 
@@ -196,7 +263,7 @@ help(ggsave)
 ```
 
 ```{r eval = F}
-ggsave("alison_hill.pdf", plot) # please make the filename unique!
+ggsave("kevin_watanabesmith.pdf", plot) # please make the filename unique!
 ```
 
 Upload this exported plot to Sakai before Wednesday at noon.

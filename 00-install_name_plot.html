@@ -9,10 +9,10 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Alison Hill" />
+<meta name="author" content="Kevin Watanabe-Smith" />
 
 
-<title>Introduce Yourself</title>
+<title>Introduce Yourself to R</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -94,8 +94,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -111,7 +117,6 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
-
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -131,6 +136,43 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -152,18 +194,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -283,7 +384,7 @@ div.tocify {
   <a href="data-vis-resources.html">Resources</a>
 </li>
 <li>
-  <a href="https://sakai.ohsu.edu/portal/site/CS-631-1-32176-Sp18">Sakai</a>
+  <a href="https://sakai.ohsu.edu/portal/site/CS-631-1-31943-Sp19">Sakai</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -299,8 +400,8 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Introduce Yourself</h1>
-<h4 class="author"><em>Alison Hill</em></h4>
+<h1 class="title toc-ignore">Introduce Yourself to R</h1>
+<h4 class="author"><em>Kevin Watanabe-Smith</em></h4>
 
 </div>
 
@@ -352,7 +453,7 @@ div.tocify {
 </ul>
 <div id="check-in-1" class="section level2">
 <h2><span class="header-section-number">3.1</span> Check in</h2>
-<p>Launch RStudio. You should get a window similar to the screenshot you see <a href="https://www.rstudio.com/wp-content/uploads/2014/04/rstudio-workbench.png">here</a>, but yours will be empty. Look at the bottom left pane: this is the same console window you saw when you opened R in step 1.15.</p>
+<p>Launch RStudio. You should get a window similar to the screenshot you see <a href="https://www.rstudio.com/wp-content/uploads/2014/04/rstudio-workbench.png">here</a>, but yours will be empty. Look at the bottom left pane: this is the same console window you saw when you opened R in step 2.</p>
 <ul>
 <li>Place your cursor where you see <code>&gt;</code> and type <code>x &lt;- 2 + 2</code>, hit enter or return, then type <code>x</code>, and hit enter/return again.</li>
 <li>If <code>[1] 4</code> prints to the screen, you have successfully installed R and RStudio, and you can move onto installing packages.</li>
@@ -381,13 +482,13 @@ install_github(&quot;name_of_package&quot;)</code></pre>
 <p class="text-info">
 <strong>Heads up:</strong> We should formally introduce the combine command, <a href="http://stat.ethz.ch/R-manual/R-patched/library/base/html/c.html"><code>c()</code></a>, used above. You will use this often- any time you want to combine things into a vector.
 </p>
-<pre class="r"><code>c(&quot;hello&quot;, &quot;my&quot;, &quot;name&quot;, &quot;is&quot;, &quot;alison&quot;)</code></pre>
-<pre><code>[1] &quot;hello&quot;  &quot;my&quot;     &quot;name&quot;   &quot;is&quot;     &quot;alison&quot;</code></pre>
+<pre class="r"><code>c(&quot;hello&quot;, &quot;my&quot;, &quot;name&quot;, &quot;is&quot;, &quot;kevin&quot;)</code></pre>
+<pre><code>[1] &quot;hello&quot; &quot;my&quot;    &quot;name&quot;  &quot;is&quot;    &quot;kevin&quot;</code></pre>
 <pre class="r"><code>c(1:3, 20, 50)</code></pre>
 <pre><code>[1]  1  2  3 20 50</code></pre>
 <p>Mind your use of quotes carefully with packages.</p>
 <ul>
-<li>To <em>install</em> a package, you put the name of the package in quotes as in <code>install.packages(&quot;name_of_package&quot;)</code>.</li>
+<li>To <em>install</em> a package, you put the name of the package in quotes as in <code>install.packages(&quot;name_of_package&quot;)</code>. You only need to do this once per package for each computer where you install R.</li>
 <li>To <em>use</em> an already installed package, you must load it first, as in <code>library(name_of_package)</code>, leaving the name of the package bare. You only need to do this once per RStudio session.</li>
 <li>If you want <em>help</em>, no quotes are needed: <code>help(name_of_package)</code> or <code>?name_of_package</code>.</li>
 <li>If you want the <em>citation</em> for a package (and you should give credit where credit is due), ask R as in <code>citation(&quot;name_of_package&quot;)</code>.</li>
@@ -423,88 +524,140 @@ A BibTeX entry for LaTeX users is
 <pre class="r"><code>library(babynames) # contains the actual data
 library(dplyr) # for manipulating data
 library(ggplot2) # for plotting data</code></pre>
+<p>You can execute all of the code in your R Script by clicking “Run” (or Ctrl + Alt + R), or you can run just the line your cursor is on by pressing “Ctrl + Enter”.</p>
 <p>Next, we’ll follow <a href="https://cran.r-project.org/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf">best practices for inspecting a freshly read dataset</a>. Also, see <a href="http://simplystatistics.org/2014/06/13/what-i-do-when-i-get-a-new-data-set-as-told-through-tweets/">“What I do when I get a new data set as told through tweets”</a> for more ideas about exploring a new dataset. Here are some critical commands to obtain a high-level overview (HLO) of your freshly read dataset in R. We’ll call it saying hello to your dataset:</p>
-<pre class="r"><code>glimpse(babynames) # dplyr</code></pre>
-<pre><code>Observations: 1,858,689
+<pre class="r"><code>glimpse(babynames) # dplyr function</code></pre>
+<pre><code>Observations: 1,924,665
 Variables: 5
 $ year &lt;dbl&gt; 1880, 1880, 1880, 1880, 1880, 1880, 1880, 1880, 1880, 188...
 $ sex  &lt;chr&gt; &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F...
 $ name &lt;chr&gt; &quot;Mary&quot;, &quot;Anna&quot;, &quot;Emma&quot;, &quot;Elizabeth&quot;, &quot;Minnie&quot;, &quot;Margaret&quot;...
 $ n    &lt;int&gt; 7065, 2604, 2003, 1939, 1746, 1578, 1472, 1414, 1320, 128...
-$ prop &lt;dbl&gt; 0.072384329, 0.026679234, 0.020521700, 0.019865989, 0.017...</code></pre>
-<pre class="r"><code>head(babynames) # base R</code></pre>
+$ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.0178884...</code></pre>
+<pre class="r"><code>head(babynames) # base R function</code></pre>
 <pre><code># A tibble: 6 x 5
    year sex   name          n   prop
   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;
-1 1880. F     Mary       7065 0.0724
-2 1880. F     Anna       2604 0.0267
-3 1880. F     Emma       2003 0.0205
-4 1880. F     Elizabeth  1939 0.0199
-5 1880. F     Minnie     1746 0.0179
-6 1880. F     Margaret   1578 0.0162</code></pre>
-<pre class="r"><code>tail(babynames) # same</code></pre>
+1  1880 F     Mary       7065 0.0724
+2  1880 F     Anna       2604 0.0267
+3  1880 F     Emma       2003 0.0205
+4  1880 F     Elizabeth  1939 0.0199
+5  1880 F     Minnie     1746 0.0179
+6  1880 F     Margaret   1578 0.0162</code></pre>
+<pre class="r"><code>tail(babynames) # base R function</code></pre>
 <pre><code># A tibble: 6 x 5
    year sex   name       n       prop
   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;int&gt;      &lt;dbl&gt;
-1 2015. M     Zyah       5 0.00000247
-2 2015. M     Zykell     5 0.00000247
-3 2015. M     Zyking     5 0.00000247
-4 2015. M     Zykir      5 0.00000247
-5 2015. M     Zyrus      5 0.00000247
-6 2015. M     Zyus       5 0.00000247</code></pre>
-<pre class="r"><code>names(babynames) # same</code></pre>
+1  2017 M     Zyhier     5 0.00000255
+2  2017 M     Zykai      5 0.00000255
+3  2017 M     Zykeem     5 0.00000255
+4  2017 M     Zylin      5 0.00000255
+5  2017 M     Zylis      5 0.00000255
+6  2017 M     Zyrie      5 0.00000255</code></pre>
+<pre class="r"><code>colnames(babynames) # base R function</code></pre>
 <pre><code>[1] &quot;year&quot; &quot;sex&quot;  &quot;name&quot; &quot;n&quot;    &quot;prop&quot;</code></pre>
-<p>If you have done the above and produced sane-looking output, you are ready for the next bit. Use the code below to create a new data frame called <code>alison</code>.</p>
-<pre class="r"><code>alison &lt;- babynames %&gt;%
-  filter(name == &quot;Alison&quot; | name == &quot;Allison&quot;) %&gt;% 
-  filter(sex == &quot;F&quot;) </code></pre>
+<p>If you have done the above and produced sane-looking output, you are ready for the next bit. Use the code below to create a new data frame called <code>sierra_alt</code>. My daughter Sierra was born last year, and I want to know if we spelled her name in a common or unique fashion.</p>
+<pre class="r"><code>sierra_alt &lt;- babynames %&gt;% 
+  filter(name == &quot;Sierra&quot; | name == &quot;Siera&quot; | name == &quot;Ciara&quot; | name == &quot;Cierra&quot; | name == &quot;Seara&quot;) %&gt;% 
+  filter(sex == &quot;F&quot;)</code></pre>
 <ul>
-<li><p>The first bit makes a new dataset called <code>alison</code> that is a copy of the <code>babynames</code> dataset- the <code>%&gt;%</code> tells you we are doing some other stuff to it later.</p></li>
-<li><p>The second bit <code>filters</code> our <code>babynames</code> to only keep rows where the <code>name</code> is either Alison or Allison (read <code>|</code> as <em>“or”</em>.)</p></li>
+<li><p>The first bit makes a new dataset called <code>sierra_alt</code> that is a copy of the <code>babynames</code> dataset - the <code>%&gt;%</code> tells you we are doing some other stuff to it later. While this is written first, the <code>&lt;-</code> assignment or copying happens last.</p></li>
+<li><p>The second bit <code>filters</code> our <code>babynames</code> to only keep rows where the <code>name</code> is Sierra or an alternate spelling (read each <code>|</code> as <em>“or”</em>.)</p></li>
 <li><p>The third bit applies another <code>filter</code> to keep only those where sex is female.</p></li>
 </ul>
 <p>Let’s check out the data.</p>
-<pre class="r"><code>alison</code></pre>
-<pre><code># A tibble: 214 x 5
-    year sex   name        n      prop
-   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;int&gt;     &lt;dbl&gt;
- 1 1905. F     Alison      7 0.0000226
- 2 1907. F     Alison      5 0.0000148
- 3 1908. F     Allison     6 0.0000169
- 4 1910. F     Alison      5 0.0000119
- 5 1910. F     Allison     5 0.0000119
- 6 1911. F     Allison     9 0.0000204
- 7 1912. F     Allison    12 0.0000205
- 8 1912. F     Alison      9 0.0000153
- 9 1913. F     Alison     12 0.0000183
-10 1913. F     Allison     7 0.0000107
-# ... with 204 more rows</code></pre>
-<pre class="r"><code>glimpse(alison)</code></pre>
-<pre><code>Observations: 214
+<pre class="r"><code>sierra_alt</code></pre>
+<pre><code># A tibble: 211 x 5
+    year sex   name       n       prop
+   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;int&gt;      &lt;dbl&gt;
+ 1  1940 F     Sierra    32 0.0000271 
+ 2  1941 F     Sierra    24 0.0000193 
+ 3  1942 F     Sierra    13 0.00000935
+ 4  1943 F     Sierra    19 0.0000132 
+ 5  1944 F     Sierra    15 0.0000110 
+ 6  1945 F     Sierra    14 0.0000104 
+ 7  1946 F     Sierra    11 0.00000682
+ 8  1947 F     Sierra     5 0.00000275
+ 9  1948 F     Sierra    11 0.00000631
+10  1950 F     Sierra     5 0.00000284
+# ... with 201 more rows</code></pre>
+<pre class="r"><code>glimpse(sierra_alt)</code></pre>
+<pre><code>Observations: 211
 Variables: 5
-$ year &lt;dbl&gt; 1905, 1907, 1908, 1910, 1910, 1911, 1912, 1912, 1913, 191...
+$ year &lt;dbl&gt; 1940, 1941, 1942, 1943, 1944, 1945, 1946, 1947, 1948, 195...
 $ sex  &lt;chr&gt; &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F...
-$ name &lt;chr&gt; &quot;Alison&quot;, &quot;Alison&quot;, &quot;Allison&quot;, &quot;Alison&quot;, &quot;Allison&quot;, &quot;Alli...
-$ n    &lt;int&gt; 7, 5, 6, 5, 5, 9, 12, 9, 12, 7, 22, 11, 16, 13, 24, 15, 2...
-$ prop &lt;dbl&gt; 2.259012e-05, 1.481776e-05, 1.692367e-05, 1.191821e-05, 1...</code></pre>
+$ name &lt;chr&gt; &quot;Sierra&quot;, &quot;Sierra&quot;, &quot;Sierra&quot;, &quot;Sierra&quot;, &quot;Sierra&quot;, &quot;Sierra...
+$ n    &lt;int&gt; 32, 24, 13, 19, 15, 14, 11, 5, 11, 5, 5, 8, 8, 8, 7, 7, 6...
+$ prop &lt;dbl&gt; 2.709e-05, 1.926e-05, 9.350e-06, 1.324e-05, 1.098e-05, 1....</code></pre>
 <p>Again, if you have sane-looking output here, move along to plotting the data!</p>
-<pre class="r"><code>plot &lt;- ggplot(alison, aes(x = year, 
+<pre class="r"><code>plot &lt;- ggplot(sierra_alt, aes(x = year, 
                            y = prop,  
                            group = name, 
                            color = name)) + 
   geom_line()  </code></pre>
 <p>Now if you did this right, you will not see your plot! Because we saved the <code>ggplot</code> with a name (<code>plot</code>), R just saved the object for you. But check out the top right pane in RStudio again: under <code>Values</code> you should see <code>plot</code>, so it is there, you just have to ask for it. Here’s how:</p>
 <pre class="r"><code>plot </code></pre>
+<p><img src="00-install_name_plot_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<div id="remixing-name-plots---a-preview-of-what-youll-learn" class="section level2">
+<h2><span class="header-section-number">5.1</span> Remixing name plots - a preview of what you’ll learn</h2>
+<p>That last Sierra plot is hard to read which names are which lines (probably because of my color blindness), but we can add labels to each line with an extra line or two.</p>
+<pre class="r"><code>ggplot(sierra_alt, aes(x = year,
+                       y = prop,
+                       group = name,
+                       color = name)) +
+  geom_line() + 
+  geom_text(data = sierra_alt %&gt;% filter(year == 2000), 
+            aes(x = year, 
+                y = prop, 
+                label = name), 
+            nudge_y = 0.0001)</code></pre>
 <p><img src="00-install_name_plot_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Ciara became quite popular following the singer by the same name releasing a triple-platnum debut in 2004.</p>
+<p>What about Star Wars characters, which names rose in popularity after the release of Star Wars?</p>
+<pre class="r"><code>swnames &lt;- babynames %&gt;% 
+  filter((name == &quot;Han&quot; &amp; sex == &quot;M&quot;) |
+           (name == &quot;Luke&quot; &amp; sex == &quot;M&quot;) |
+           (name == &quot;Leia&quot; &amp; sex == &quot;F&quot;))
+
+ggplot(swnames, aes(x = year,
+                    y = prop,
+                    group = name,
+                    color = name)) +
+  geom_line() +
+  geom_vline(xintercept = 1977, linetype = &quot;3133&quot;)</code></pre>
+<p><img src="00-install_name_plot_files/figure-html/starwars1-1.png" width="672" /></p>
+<p>How about the new movies, is Rey usually a male or female name? Is that changing?</p>
+<pre class="r"><code>rey_gender &lt;- babynames %&gt;% 
+  filter(name == &quot;Rey&quot;)
+
+ggplot(rey_gender, aes(x = year,
+                    y = prop,
+                    group = sex,
+                    color = sex)) +
+  geom_line() +
+  geom_vline(xintercept = 2015, linetype = &quot;2123&quot;)</code></pre>
+<p><img src="00-install_name_plot_files/figure-html/starwars2-1.png" width="672" /></p>
+<p>What about the course instructors? Can we guess how old they are by their names?</p>
+<pre class="r"><code>instructors &lt;- babynames %&gt;% 
+  filter((name == &quot;Steven&quot; &amp; sex == &quot;M&quot;) |
+           (name == &quot;Kevin&quot; &amp; sex == &quot;M&quot;) |
+           (name == &quot;Jackie&quot; &amp; sex == &quot;F&quot;))
+
+ggplot(instructors, aes(x = year,
+                    y = prop,
+                    color = name)) +
+  geom_line()</code></pre>
+<p><img src="00-install_name_plot_files/figure-html/instructornames-1.png" width="672" /></p>
+</div>
 </div>
 <div id="make-a-new-name-plot" class="section level1">
 <h1><span class="header-section-number">6</span> Make a new name plot</h1>
-<p>Edit my code above to create a new dataset. Pick 2 names to compare how popular they each are (these could be different spellings of your own name, like I did, but you can choose any 2 names that are present in the dataset). Make the new plot, changing the name of the first argument <code>alison</code> in <code>ggplot()</code> to the name of your new dataset.</p>
+<p>Edit my code above to create a new dataset. Pick 2 names to compare how popular they each are (these could be different spellings of your own name, like I did, but you can choose any 2 names that are present in the dataset). Make the new plot, changing the name of the first argument <code>sierra_alt</code> in <code>ggplot()</code> to the name of your new dataset.</p>
 <div id="save-and-share" class="section level2">
 <h2><span class="header-section-number">6.1</span> Save and share</h2>
 <p>Save your work so you can share your favorite plot with us. You will not like the looks of your plot if you mouse over to <code>Export</code> and save it. Instead, use <code>ggplot2</code>’s command for saving a plot with sensible defaults:</p>
 <pre class="r"><code>help(ggsave)</code></pre>
-<pre class="r"><code>ggsave(&quot;alison_hill.pdf&quot;, plot) # please make the filename unique!</code></pre>
+<pre class="r"><code>ggsave(&quot;kevin_watanabesmith.pdf&quot;, plot) # please make the filename unique!</code></pre>
 <p>Upload this exported plot to Sakai before Wednesday at noon.</p>
 </div>
 </div>
@@ -532,6 +685,13 @@ $ prop &lt;dbl&gt; 2.259012e-05, 1.481776e-05, 1.692367e-05, 1.191821e-05, 1...<
 <li><p><a href="https://rweekly.org" class="uri">https://rweekly.org</a></p></li>
 </ul>
 </div>
+
+<p>
+Adapted from <a href="https://apreshill.github.io/data-vis-labs-2018/index.html">
+2018 course materials</a>
+ by 
+<a href="https://alison.rbind.io/">Dr. Alison Hill</a>
+</p>
 
 <p>
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
