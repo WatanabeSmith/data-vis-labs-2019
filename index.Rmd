@@ -4,6 +4,8 @@ title: "Principles & Practice of Data Visualization"
 
 This is the site for sharing our Data Visualization Labs for CS631 at Oregon Health & Science University.
 
+We will be working on our labs through our [RStudio Cloud workspace](https://rstudio.cloud/spaces/13284/join?access_code=XTto%2FOQ9g6INmaRl9jVq6OUJjyLD1ji9%2BuzH5lmz) (make sure to register for a free account).
+
 - [Lab 00: Introduce Yourself](00-install_name_plot.html)
 - [Lab 01: Nathan's Hot Dog Eating Context](01-eda_hot_dogs.html)
     - [Slides](slides/01-slides.html)

@@ -1,6 +1,6 @@
 # data-vis-labs-2019
 
-See my blogdown demo site here: 
+See  blogdown demo site here: 
 
 -https://ada-lovelace.netlify.com/blog/
 

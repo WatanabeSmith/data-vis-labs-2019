@@ -266,6 +266,9 @@ help(ggsave)
 ggsave("kevin_watanabesmith.pdf", plot) # please make the filename unique!
 ```
 
+**For Rstudio cloud**: once you save your plot as a PDF you'll still need to download the PDF to your computer. To do this, in the lower left panel click on the "Files" tab, check the box next to your saved PDF, click "More" drop-down menu and select "Export".
+
+
 Upload this exported plot to Sakai before Wednesday at noon.
 
 # Other cool `babynames` projects
