@@ -6,6 +6,7 @@ output: html_document
 ## Data Visualiztion by Kieran Healy
 
 Official book link (for purchase): https://kieranhealy.org/publications/dataviz/
+
 Official link for text of an earlier, incomplete draft: https://socviz.co/index.html#preface
 
 
